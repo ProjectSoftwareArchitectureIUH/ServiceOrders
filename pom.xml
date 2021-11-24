@@ -57,6 +57,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test</artifactId>
         </dependency>
+        <!--4j-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+        </dependency>
+        <!--4j-->
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -69,6 +75,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
 
     <build>
         <plugins>

@@ -4,6 +4,7 @@ import com.example.orderservice.Entity.Orders;
 import com.example.orderservice.Service.OrderService;
 import com.example.orderservice.VO.ResponseTemplateVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
     @GetMapping("/shipping/{id}")
-    public ResponseTemplateVO getOrderWithShipping(@PathVariable long id){
+    public ResponseEntity<ResponseTemplateVO> getOrderWithShipping(@PathVariable long id){
                 return orderService.getOrderWithShipping(id);
     }
     @GetMapping("/all/")
