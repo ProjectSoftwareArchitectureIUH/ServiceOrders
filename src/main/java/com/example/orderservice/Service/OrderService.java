@@ -1,5 +1,6 @@
 package com.example.orderservice.Service;
 
+import com.example.orderservice.Entity.ExceptionHandle;
 import com.example.orderservice.Entity.Orders;
 import com.example.orderservice.Repository.OrderRepository;
 import com.example.orderservice.VO.ResponseTemplateVO;
@@ -43,18 +44,21 @@ public class OrderService {
         responseTemplateVO.setShipping(shipping);
         return new ResponseEntity<ResponseTemplateVO>(responseTemplateVO, HttpStatus.OK);
     }
-    public ResponseEntity<String> fallBackRetry(RuntimeException e){
+    public ResponseEntity<ExceptionHandle> fallBackRetry(RuntimeException e){
         flag = 0;
-        System.out.println("err :" +e.getMessage());
-
-        return  new ResponseEntity<String>("fall back retry", HttpStatus.INTERNAL_SERVER_ERROR);
-
+        System.out.println("Fall Back Retry: "+e.getMessage());
+        ResponseTemplateVO vo = new ResponseTemplateVO();
+        ExceptionHandle exceptionCustom = new ExceptionHandle(
+                "Fall Back Retry Service is Down",e.getMessage());
+        return new ResponseEntity<ExceptionHandle>(exceptionCustom, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-    public ResponseEntity<String> fallBackRatelimiter(RuntimeException e){
+
+    public ResponseEntity<ExceptionHandle> fallBackRatelimiter(RuntimeException e){
         flag = 0;
-        System.out.println("err :" +e.getMessage());
-
-        return  new ResponseEntity<String>("fall back Ratelimiter", HttpStatus.INTERNAL_SERVER_ERROR);
-
+        System.out.println("Fall Back Ratelimiter: "+e.getMessage());
+        ResponseTemplateVO vo = new ResponseTemplateVO();
+        ExceptionHandle exceptionCustom = new ExceptionHandle(
+                "Fall Back Ratelimiter Service is Down",e.getMessage());
+        return new ResponseEntity<ExceptionHandle>(exceptionCustom, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
