@@ -5,17 +5,8 @@ spring:
   application:
     name: orders-service
 
-eureka:
-  client:
-    register-with-eureka:
-      value: true
-    fetch-registry:
-      value: true;
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-    instance:
-      hostname: localhost
-
+  config:
+    import: "optional:configserver:"
 resilience4j:
   retry:
     instances:
@@ -28,4 +19,5 @@ resilience4j:
         limitForPeriod: 2
         limitRefreshPeriod: 3s
         timeoutDuration: 1s
+
 
