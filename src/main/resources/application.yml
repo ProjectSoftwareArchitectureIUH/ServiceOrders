@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: orders-service
+    name: ORDERS-SERVICE
   config:
     import: "optional:configserver:"
 resilience4j:
