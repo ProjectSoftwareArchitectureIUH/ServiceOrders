@@ -14,7 +14,7 @@
     <name>OrderService</name>
     <description>OrderService</description>
     <properties>
-<!--        <java.version>11</java.version>-->
+        <java.version>11</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring-cloud.version>2020.0.4</spring-cloud.version>
