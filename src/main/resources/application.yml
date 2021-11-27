@@ -1,9 +1,9 @@
 server:
- port: 9002
+ port: ${PORT:9002}
 
 spring:
   application:
-    name: ORDERS-SERVICE
+    name: orders-service
   config:
     import: "optional:configserver:"
 resilience4j:
