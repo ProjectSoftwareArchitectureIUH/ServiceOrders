@@ -9,13 +9,16 @@ spring:
 resilience4j:
   retry:
     instances:
+      #      # Retry object used in RetryingService.basicExample()
       basic:
+        #Số lần thử tối đa (bao gồm cả cuộc gọi đầu tiên là lần thử đầu tiên)
         maxRetryAttemps:  3
-        waitDuration:  3s
+        #Khoảng thời gian chờ cố định giữa các lần thử lại
+        waitDuration:  5s
   ratelimiter:
     instances:
       basicExample:
-        limitForPeriod: 2
+        limitForPeriod: 1
         limitRefreshPeriod: 3s
         timeoutDuration: 1s
 
