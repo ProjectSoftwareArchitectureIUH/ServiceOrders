@@ -4,3 +4,6 @@ spring:
       enabled: true
       uri: https://servicecloudconfig.herokuapp.com
 #       http://localhost:8888
+management:
+    security:
+        enabled: false
