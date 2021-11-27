@@ -22,7 +22,7 @@ public class OrderController {
                 return orderService.getOrderWithShipping(id);
     }
     @GetMapping("/all/")
-    public List<Orders> getAllOrder(){
+    public ResponseEntity<List<Orders>>  getAllOrder(){
         return orderService.getAll();
     }
     @GetMapping("/{id}")
@@ -30,7 +30,7 @@ public class OrderController {
         return orderService.getById(id);
     }
     @PostMapping("/")
-    public Orders getById(@RequestBody Orders orders){
+    public Orders save(@RequestBody Orders orders){
         return orderService.save(orders);
     }
 }

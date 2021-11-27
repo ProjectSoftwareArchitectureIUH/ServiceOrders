@@ -8,6 +8,7 @@ import com.example.orderservice.VO.Shipping;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -28,15 +29,23 @@ public class OrderService {
     public Orders save(Orders orders){
         return orderRepository.save(orders);
     }
+    //@Cacheable(value = "getById")
+    //@RateLimiter(name = "basicExample",fallbackMethod = "fallBackRatelimiter")
     public Orders getById(long id){
         return orderRepository.findById(id).get();
     }
-    public List<Orders> getAll(){
-        return orderRepository.findAll();
-    }
+    //@Cacheable(value = "getById")
     @RateLimiter(name = "basicExample",fallbackMethod = "fallBackRatelimiter")
+    public ResponseEntity<List<Orders>> getAll(){
+        List<Orders> orders = orderRepository.findAll();
+        return new ResponseEntity<List<Orders>>(orders, HttpStatus.OK);
+    }
+    //
     @Retry(name = "basic",fallbackMethod = "fallBackRetry")
+    //@Cacheable(value = "getOrderWithShipping")
     public ResponseEntity<ResponseTemplateVO> getOrderWithShipping(long id){
+        flag = flag +1;
+        System.out.println("getOrderWithShipping run: "+flag);
         ResponseTemplateVO responseTemplateVO = new ResponseTemplateVO();
         Orders orders = orderRepository.findById(id).get();
         Shipping shipping =restTemplate.getForObject("http://localhost:9001/shipping/"+orders.getShippingId(),Shipping.class);
@@ -58,7 +67,7 @@ public class OrderService {
         System.out.println("Fall Back Ratelimiter: "+e.getMessage());
         ResponseTemplateVO vo = new ResponseTemplateVO();
         ExceptionHandle exceptionCustom = new ExceptionHandle(
-                "Fall Back Ratelimiter Service is Down",e.getMessage());
+                "Fall Back Ratelimiter Service is Down calling too many times",e.getMessage().toString());
         return new ResponseEntity<ExceptionHandle>(exceptionCustom, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
