@@ -48,7 +48,7 @@ public class OrderService {
         System.out.println("getOrderWithShipping run: "+flag);
         ResponseTemplateVO responseTemplateVO = new ResponseTemplateVO();
         Orders orders = orderRepository.findById(id).get();
-        Shipping shipping =restTemplate.getForObject("http://localhost:9001/shipping/"+orders.getShippingId(),Shipping.class);
+        Shipping shipping =restTemplate.getForObject("https://serviceshipping.herokuapp.com/shipping/"+orders.getShippingId(),Shipping.class);
         responseTemplateVO.setOrders(orders);
         responseTemplateVO.setShipping(shipping);
         return new ResponseEntity<ResponseTemplateVO>(responseTemplateVO, HttpStatus.OK);
