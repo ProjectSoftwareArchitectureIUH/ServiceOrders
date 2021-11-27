@@ -36,11 +36,11 @@ public class OrderController {
     }
 
 
-    @Value("${myName}")
-    public String name;
-    @GetMapping("/name")
-    private String getMyName(){
-        return name;
-    }
+//    @Value("${myName}")
+//    public String name;
+//    @GetMapping("/name")
+//    private String getMyName(){
+//        return name;
+//    }
 
 }
