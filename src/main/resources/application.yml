@@ -1,11 +1,11 @@
 server:
  port: ${PORT:9002}
 
-spring:
-  application:
-    name: orders-service
-  config:
-    import: "optional:configserver:"
+# spring:
+#   application:
+#     name: orders-service
+#   config:
+#     import: "optional:configserver:"
 resilience4j:
   retry:
     instances:
@@ -25,6 +25,7 @@ resilience4j:
 
 eureka:
   instance:
+    hostname: serviceorder.herokuapp.com
     homePageUrl: https://${eureka.instance.hostName}/
     home-page-url-path: https://${eureka.instance.hostName}
   client:
