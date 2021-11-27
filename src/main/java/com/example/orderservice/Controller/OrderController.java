@@ -35,13 +35,4 @@ public class OrderController {
         return orderService.save(orders);
     }
 
-    @Value("${myName}")
-    public String name;
-    @GetMapping("/name")
-    private String getMyName(){
-        return name;
-    }
-
-
-
 }
