@@ -14,7 +14,9 @@
     <name>OrderService</name>
     <description>OrderService</description>
     <properties>
-        <java.version>11</java.version>
+<!--        <java.version>11</java.version>-->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <spring-cloud.version>2020.0.4</spring-cloud.version>
     </properties>
     <dependencies>
@@ -62,7 +64,12 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         <!--4j-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
