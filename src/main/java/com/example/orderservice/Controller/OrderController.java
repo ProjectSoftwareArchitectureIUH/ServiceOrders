@@ -4,6 +4,7 @@ import com.example.orderservice.Entity.Orders;
 import com.example.orderservice.Service.OrderService;
 import com.example.orderservice.VO.ResponseTemplateVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,4 +34,14 @@ public class OrderController {
     public Orders save(@RequestBody Orders orders){
         return orderService.save(orders);
     }
+
+    @Value("${myName}")
+    public String name;
+    @GetMapping("/name")
+    private String getMyName(){
+        return name;
+    }
+
+
+
 }
