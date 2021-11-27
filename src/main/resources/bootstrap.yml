@@ -2,4 +2,5 @@ spring:
   cloud:
     config:
       enabled: true
-      uri: http://localhost:8888
+      uri: https://servicecloudconfig.herokuapp.com
+#       http://localhost:8888
