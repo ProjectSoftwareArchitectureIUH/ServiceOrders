@@ -42,7 +42,7 @@ public class OrderService {
     }
     //
     @Retry(name = "basic",fallbackMethod = "fallBackRetry")
-    //@Cacheable(value = "getOrderWithShipping")
+    @Cacheable(value = "getOrderWithShipping")
     public ResponseEntity<ResponseTemplateVO> getOrderWithShipping(long id){
         flag = flag +1;
         System.out.println("getOrderWithShipping run: "+flag);
@@ -70,4 +70,28 @@ public class OrderService {
                 "Fall Back Ratelimiter Service is Down calling too many times",e.getMessage().toString());
         return new ResponseEntity<ExceptionHandle>(exceptionCustom, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    public void deleteById(Long id) {
+        try {
+            orderRepository.deleteById(id);
+            System.out.println("Delete OK !");
+        }catch (Exception e){
+            System.out.println("Delete Fail Check Again !");
+        }
+    }
+
+
+    public Orders updateOrderById(Long id, Orders orders) {
+        Orders ordersData = orderRepository.findById(id).get();
+
+        ordersData.setProductName(orders.getProductName());
+        ordersData.setAddress(orders.getAddress());
+        ordersData.setPhoneNumber(orders.getPhoneNumber());
+        ordersData.setOrderDate(orders.getOrderDate());
+        ordersData.setShippingId(orders.getShippingId());
+        return orderRepository.save(ordersData);
+    }
+
+
+
 }

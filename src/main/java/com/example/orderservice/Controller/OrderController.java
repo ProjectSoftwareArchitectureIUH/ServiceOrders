@@ -36,6 +36,19 @@ public class OrderController {
         return orderService.save(orders);
     }
 
+    @DeleteMapping("/{id}")
+    void deleteOrderById(@PathVariable Long id) {
+        orderService.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Orders updateOrdersById(@PathVariable("id") Long id,@RequestBody Orders orders){
+
+        return orderService.updateOrderById(id, orders);
+    }
+
+
+
 
 //    @Value("${myName}")
 //    public String name;

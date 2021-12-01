@@ -25,6 +25,27 @@ resilience4j:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 eureka:
   instance:
     hostname: serviceorders.herokuapp.com
