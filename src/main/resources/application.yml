@@ -23,6 +23,8 @@ resilience4j:
         timeoutDuration: 1s
 
 
+
+
 eureka:
   instance:
     hostname: serviceorders.herokuapp.com
