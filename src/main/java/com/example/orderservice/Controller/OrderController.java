@@ -47,14 +47,11 @@ public class OrderController {
         return orderService.updateOrderById(id, orders);
     }
 
-
-
-
-//    @Value("${myName}")
-//    public String name;
-//    @GetMapping("/name")
-//    private String getMyName(){
-//        return name;
-//    }
+    @Value("${myName}")
+    public String name;
+    @GetMapping("/name")
+    private String getMyName(){
+        return name;
+    }
 
 }
