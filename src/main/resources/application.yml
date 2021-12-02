@@ -6,6 +6,8 @@ spring:
     name: orders-service
 #   config:
 #     import: "optional:configserver:"
+
+
 resilience4j:
   retry:
     instances:
