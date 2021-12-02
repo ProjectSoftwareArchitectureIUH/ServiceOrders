@@ -46,8 +46,7 @@ public class OrderController {
 
         return orderService.updateOrderById(id, orders);
     }
-
-    @Value("${myName}")
+    @Value("${message}")
     private String name;
 
     @GetMapping("/name")
