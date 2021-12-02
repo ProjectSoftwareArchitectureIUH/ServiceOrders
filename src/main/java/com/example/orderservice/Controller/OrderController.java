@@ -48,9 +48,10 @@ public class OrderController {
     }
 
     @Value("${myName}")
-    public String name;
+    private String name;
+
     @GetMapping("/name")
-    private String getMyName(){
+    public String getMyName(){
         return name;
     }
 
